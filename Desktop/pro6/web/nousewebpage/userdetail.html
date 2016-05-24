@@ -1,0 +1,124 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form role="form">
+			<h2>Employee Detail<small></small></h2>
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        <input type="text" ng-model="fname" class="form-control input-lg" placeholder="First Name" tabindex="1" disabled>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="text" ng-model="lname" class="form-control input-lg" placeholder="Last Name" tabindex="2" disabled>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        <input type="number" ng-model="age" class="form-control input-lg" placeholder="Age" tabindex="3" disabled>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<style>
+							select:invalid { color: gray; }
+						</style>
+						<select ng-model="sex" class="form-control input-lg" tabindex="4" required disabled>
+							<option value="" selected disabled hidden>Sex</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2">
+					<div class="form-group">
+                        <input type="text" ng-disabled="true" class="form-control input-lg" placeholder="+1" tabindex="5" disabled>
+					</div>
+				</div>
+				<div class="col-xs-10 col-sm-10 col-md-10">
+					<div class="form-group">
+						<input type="text" ng-model="phonenumber" class="form-control input-lg" placeholder="Phone Number" tabindex="6" disabled>
+						<span ng-show="phoneshow" style="color:red">* Your Phone Number Is Not Correct!</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="text" ng-model="email" class="form-control input-lg" placeholder="Email Address" tabindex="7" disabled>
+				<span ng-show="emailshow" style="color:red">* Your Email Address Is Not Correct!</span>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<style>
+							select:invalid { color: gray; }
+						</style>
+						<select ng-model="department" class="form-control input-lg" tabindex="8" required disabled >
+							<option value="" selected disabled hidden>Department</option>
+							<option value="IT">IT</option>
+							<option value="Sales">Sales</option>
+							<option value="Service">Service</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<style>
+							select:invalid { color: gray; }
+						</style>
+						<select ng-model="title" class="form-control input-lg" tabindex="9" required disabled>
+							<option value="" selected disabled hidden>Title</option>
+							<option value="CEO">CEO</option>
+							<option value="Director">Director</option>
+							<option value="Manager">Manager</option>
+							<option value="Staff">Staff</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<style>
+					select:invalid { color: gray; }
+				</style>
+				<select  ng-model="manager" class="form-control input-lg" tabindex="10" required disabled>
+					<option value="" selected disabled hidden>No Manager</option>
+					<option value="-1">No Manager</option>
+					<option ng-repeat="user in managerList" value="{{user.id}}">{{user.fname+' '+user.lname+ '(' + user.department+', '+ user.title + ')'}}</option>
+				</select>
+			</div>
+			<div  flow-init="{target: '/upload', singleFile: true}"
+				flow-file-added="addfile()">
+				<div class="form-group">
+					<div>
+						<div class="thumbnail">
+						  <img src="{{imgpath}}" onload="javascript:limitPresentImage(this);" />
+						</div>
+						<!-- <div class="thumbnail" ng-show="$flow.files.length">
+						  <img flow-img="$flow.files[0]" onload="javascript:limitPresentImage(this);"/>
+						</div> -->
+						<!-- <div>
+							<button class="btn btn-primary" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}" value="Choose Image">Choose A New Image</button>
+							<button class="btn btn-primary" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}" value="Change">Change Image</button>
+							<button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel();removefile()" value="Remove">Remove Image</button>
+						</div>
+						<p>
+							* Only PNG,GIF,JPG files allowed
+						</p> -->
+					</div>
+				</div>
+				
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-md-6"><a href="#/edit/{{editId}}" ng-disabled="notconfirm" class="btn btn-primary btn-block btn-lg">Edit</a></div>
+					<div class="col-xs-12 col-md-6"><button ng-click="cancle()" class="btn btn-success btn-block btn-lg">Back</button></div>
+				</div>
+			</div>
+		</form>
+	</div>	
+</div>
+

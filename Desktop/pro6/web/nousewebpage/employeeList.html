@@ -1,0 +1,75 @@
+<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3" ng-model="top">
+<div class = "row">
+	<h2>Employee Management</h2>
+	<hr class="colorgraph">
+	<div class="row">
+		<div class="col-xs-12 col-md-3"><a href="#/create" class="btn btn-primary btn-block btn-lg">Add New</a></div>
+		<div class="col-xs-12 col-md-3"><a href="#/"  class="btn btn-success btn-block btn-lg">Refresh</a></div>
+		<div class="col-xs-12 col-md-3"><a href="#/search"  class="btn btn-danger btn-block btn-lg">Search</a></div>
+	</div>
+	<br>
+	<div>
+	<form>
+		<div class="col-xs-6 col-sm-3 col-md-3">
+			<input type="text" class="form-control" ng-model="search"  placeholder="Search">
+			</br>
+		</div>
+	</form></div>
+</div>
+<div class = "row">
+	<div class="table-responsive" >
+	<table class="table table-striped table-bordered table-hover" infinite-scroll='loadMore()' >
+		<tr>
+			<th></th>
+			<th>Edit</th>
+			<!-- <th>Delete</th> -->
+			<th ng-click="sort('fname')">Name
+				<span class="glyphicon sort-icon" ng-show="sortKey=='fname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<!-- <th ng-click="sort('age')">Age
+				<span class="glyphicon sort-icon" ng-show="sortKey=='age'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th ng-click="sort('sex')">Sex
+				<span class="glyphicon sort-icon" ng-show="sortKey=='sex'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th ng-click="sort('phone')">Phone
+				<span class="glyphicon sort-icon" ng-show="sortKey=='phone'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th ng-click="sort('email')">Email
+				<span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th> -->
+			<th ng-click="sort('department')">Department
+				<span class="glyphicon sort-icon" ng-show="sortKey=='department'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th ng-click="sort('title')">Title
+				<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th ng-click="sort('manager')">Manager
+				<span class="glyphicon sort-icon" ng-show="sortKey=='manager'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th ng-click="sort('report')">Report To
+				<span class="glyphicon sort-icon" ng-show="sortKey=='report'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+		</tr>
+		<tr ng-repeat = "user in users |limitTo:limitNum | orderBy:sortKey:reverse | filter:search ">
+			<td style="width:50px"><img src="{{user.imgpath}}" onload="javascript:limitImage(this);"></td>
+			<td><a class="btn btn-info btn-sm" href="#/edit/{{ user.id }}">Edit</a><br/></td>
+			<!-- <td><button class="btn btn-info btn-sm" ng-click="deleteUser(user.id)">Delete</button></td> -->
+			<td><a href="#/getdetails/{{ user.id }}">{{ user.fname + " " + user.lname}}<a></td>
+			<!-- <td>{{ user.age }}</td>
+			<td>{{ user.sex }}</td>
+			<td>{{ user.phone }}</td>
+			<td>{{ user.email }}</td> -->
+			<td>{{ user.department }}</td>
+			<td>{{ user.title }}</td>	
+			<td><a href="#/getmanager/{{ user.managerid }}">{{ user.managername }}<a></td>
+			<td><a href="#/getreport/{{ user.id }}">{{ user.report }}<a></td>				
+		</tr>
+	</table>
+	</div>
+</div>
+<div class = "row">
+	<hr class="colorgraph">
+	<button class="btn btn-info btn-sm topbutton"  ng-click='gotop()'>Top</button>
+</div>
+</div>
